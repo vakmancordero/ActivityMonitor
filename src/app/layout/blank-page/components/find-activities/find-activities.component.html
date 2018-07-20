@@ -1,0 +1,59 @@
+
+<div class="row mb-3">
+  <div class="col col-sm-8">
+    <div class="card border-secondary mb-3"><!--style="max-width: 18rem;"-->
+      <div class="card-header">
+        Activity 1 (<strong>Id: someId</strong>)
+      </div>
+      <div class="card-body">
+        <form [formGroup]="activitiesForm" class="mb-3" (ngSubmit)="findActivities()">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="activity">Activity</label>
+              <div id="activity-ac">
+
+                <app-autocomplete [inputId]="'activity'" [inputName]="'title'">
+
+                </app-autocomplete>
+
+                <input [ngbTypeahead]="search" (selectItem)="selectItem($event, 'activity')" formControlName="activity"
+                       [resultFormatter]="formatter" [inputFormatter]="formatter"
+                       type="text" class="form-control typeahead tt-query" autocomplete="off" spellcheck="false"
+                       id="activity" placeholder="Enter an activity name...">
+
+                <span *ngIf="searching">searching...</span>
+                <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
+                <pre>Model: {{ activitiesModel.activityId | json }}</pre>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="environment">Environment</label>
+              <div id="environment-ac">
+                <input formControlName="environment" type="text" class="form-control typeahead tt-query" autocomplete="off" spellcheck="false"
+                       id="environment" placeholder="Enter an environment name...">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="status">Status</label>
+              <div id="status-ac">
+                <input formControlName="status" type="text" class="form-control typeahead tt-query" autocomplete="off" spellcheck="false"
+                       id="status" placeholder="Enter a status name...">
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="module">Module</label>
+              <div id="module-ac">
+                <input formControlName="module" type="text" class="form-control typeahead tt-query" autocomplete="off" spellcheck="false"
+                       id="module" placeholder="Enter a module name...">
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered"></table>
+      </div>
+    </div>
+  </div>
+</div>

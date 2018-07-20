@@ -1,0 +1,12 @@
+<input
+  [ngbTypeahead]="search"
+  (selectItem)="selectItem($event)"
+  formControlName="inputName"
+  [resultFormatter]="formatter"
+  [inputFormatter]="formatter"
+  id="activity"
+  type="text"
+  placeholder="Enter an activity name..."
+  class="form-control typeahead tt-query"
+  autocomplete="off"
+  spellcheck="false">
